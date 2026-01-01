@@ -28,12 +28,6 @@
 #include "vm_arena.h"
 
 /*
- * ******************************************
- * * Interface for student portion of pager *
- * ******************************************
- */
-
-/*
  * vm_init
  *
  * Called when the pager starts.  It should set up any internal data structures
@@ -106,19 +100,6 @@ void vm_destroy();
 void* vm_map(const char* filename, unsigned int block);
 
 /*
- * *****************************************************************
- * * Interface for accessing files.  Implemented by infrastructure *
- * *****************************************************************
- *
- * You may assume that, while the pager is running, no other process
- * accesses its files.  You may also assume that once a file block is
- * accessed successfully, it will remain accessible (although the
- * reverse may not be true; a file that cannot be accessed now may be
- * accessible later).  Reads and writes to the swap file should not fail;
- * the pager may exit if they do.
- */
-
-/*
  * file_read
  *
  * Read page from the specified file and block into buf.
@@ -138,19 +119,6 @@ int file_read(const char* filename, unsigned int block, void* buf);
  */
 int file_write(const char* filename, unsigned int block, const void* buf);
 
-/*
- * *********************************************************
- * * Public interface for the physical memory abstraction. *
- * * Defined in infrastructure.                            *
- * *********************************************************
- *
- * Physical memory pages are numbered from 0 to (memory_pages-1), where
- * memory_pages is the parameter passed to vm_init().
- *
- * Your pager accesses the data in physical memory through the variable
- * vm_physmem, e.g., static_cast<char *>(vm_physmem)[5] is byte 5 of
- * physical memory.
- */
 extern void* const vm_physmem;
 
 /*
